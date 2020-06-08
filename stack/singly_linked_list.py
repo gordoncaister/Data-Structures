@@ -161,4 +161,4 @@ class LinkedList:
         while current.get_next() != self.tail:
                 current = current.get_next()
                 counter +=1
-        return counter+1
+        return counter
