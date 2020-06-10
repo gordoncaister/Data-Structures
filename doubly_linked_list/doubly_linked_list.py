@@ -122,7 +122,8 @@ class DoublyLinkedList:
             self.tail = node
             self.tail.next = None
         self.tail.next = node
-        self.
+        self.tail = node
+        self.tail.next = None
 
 
     """Removes a node from the list and handles cases where
