@@ -9,6 +9,7 @@ This part of the project comprises two days:
 2. Implement the `in_order_print`, `bft_print`, and `dft_print` methods
    on the BSTNode class.
 """
+from queue import Queue
 class BSTNode:
     def __init__(self, value):
         self.value = value
@@ -35,16 +36,17 @@ class BSTNode:
     def contains(self, target):
         if self.value == target:
             return True
-        if self.value > target:
+        elif self.value > target:
             if not self.left:
                 return False
             else:
-                self.left.contains(target)
+                return self.left.contains(target)
         else:
             if not self.right:
                 return False
             else:
-                self.right.contains(target)
+                return self.right.contains(target)
+
 
     # Return the maximum value found in the tree
     def get_max(self):
@@ -66,18 +68,34 @@ class BSTNode:
     # Print all the values in order from low to high
     # Hint:  Use a recursive, depth first traversal
     def in_order_print(self, node):
-        pass
+        if node.left:
+            self.in_order_print(node.left)
+        print(node.value)
+        if node.right:
+            self.in_order_print(node.right)
 
     # Print the value of every node, starting with the given node,
     # in an iterative breadth first traversal
     def bft_print(self, node):
-        pass
+        queue = Queue()
+        queue.enqueue(node)
 
+        while queue.__len__() > 0:
+            currnode = queue.dequeue()
+            print(currnode.value)
+
+            if currnode.left:
+                queue.enqueue(currnode.left)
+            if currnode.right:
+                queue.enqueue(currnode.right)
     # Print the value of every node, starting with the given node,
     # in an iterative depth first traversal
     def dft_print(self, node):
-        pass
-
+        print(node.value)
+        if node.left:
+            self.dft_print(node.left)
+        if node.right:
+            self.dft_print(node.right)
     # Stretch Goals -------------------------
     # Note: Research may be required
 
